@@ -1,2 +1,24 @@
 <app-header></app-header>
-<p>personajes works!</p>
+
+<main class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <table class="table table-hover table-bordered">
+                <thead class="bg-dark bg-gradient text-white">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Planeta</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of personajes">
+                        <td>{{p.name}}</td>
+                        <td>{{p.originPlanet}}</td>
+                        <td>{{p.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

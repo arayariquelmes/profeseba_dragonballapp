@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Personaje } from '../model/personaje';
+import { PersonajesService } from '../services/personajes.service';
 
 @Component({
   selector: 'app-personajes',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./personajes.component.scss']
 })
 export class PersonajesComponent implements OnInit {
-
-  constructor() { }
+  
+  personajes:Personaje[];
+  constructor(private perService:PersonajesService) { }
 
   ngOnInit(): void {
+    this.perService.getPersonajes().subscribe(hectorin=>this.personajes=hectorin);
   }
 
 }

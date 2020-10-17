@@ -1,2 +1,10 @@
 <app-header></app-header>
-<p>Wena cabralex ta vivo maluco!</p>
+<main class="container-fluid">
+    <section class="bg-dark bg-gradient text-white p-5 text-center mt-5">
+        <h1>{{titulo}}</h1>
+    </section>
+    <h3 class="mt-5">Estas fueron las muertes de krilin:</h3>
+    <ol class="mt-5">
+        <li *ngFor="let muerte of muertesKrilin" >{{muerte | uppercase }}</li>
+    </ol>
+</main>
