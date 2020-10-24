@@ -7,7 +7,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 export class PersonajesService {
-  private serverUrl:string = environment.apiUrl
+  private serverUrl:string = environment.apiUrl;
   private headers:HttpHeaders = new HttpHeaders({
     'Content-Type':'application/json; charset=utf-8'
   });

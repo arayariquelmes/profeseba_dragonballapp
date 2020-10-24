@@ -1,24 +1,66 @@
 <app-header></app-header>
 
 <main class="container-fluid">
+    <p-toast></p-toast>
     <div class="row mt-5">
-        <div class="col-lg-6 col-md-6 col-sm-12">
-            <table class="table table-hover table-bordered">
-                <thead class="bg-dark bg-gradient text-white">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Planeta</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let p of personajes">
-                        <td>{{p.name}}</td>
-                        <td>{{p.originPlanet}}</td>
-                        <td>{{p.status}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div *ngIf="error == ''" class="mx-auto col-lg-8 col-md-10 col-sm-12">
+            <p-table [value]="personajes" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" 
+            currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+            [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Planeta de Origen</th>
+                    <th>Especie</th>
+                    <th>Genero</th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-personaje>
+                <tr>
+                    <td>{{personaje.name}}</td>
+                    <td>{{personaje.originPlanet}}</td>
+                    <td>{{personaje.species}}</td>
+                    <td>{{personaje.gender}}</td>
+                    <td><button type="button"
+                        (click)="mostrarPersonaje(personaje)"
+                        class="btn btn-info btn-block">
+                        <i class="pi pi-search-plus"></i>
+                    </button></td>
+                </tr>
+            </ng-template>
+        </p-table>
         </div>
     </div>
+    <p-dialog [header]="personaje?.name" [(visible)]="mostrarDialogo">
+        <div class="row">
+            <h5 class="col-sm-4">
+                Nombre
+            </h5>
+            <span class="col-sm">
+                {{personaje?.name}}
+            </span>
+        </div>
+        <div class="row">
+            <h5 class="col-sm-4">
+                Planeta Origen
+            </h5>
+            <span class="col-sm">
+                {{personaje?.originPlanet}}
+            </span>
+        </div>
+        <div class="row">
+            <h5 class="col-sm-4">
+                Series
+            </h5>
+            <span class="col-sm">
+                {{personaje?.series}}
+            </span>
+        </div>
+        <div class="row">
+            <span class="col-sm-12">
+                <img *ngIf="personaje" src="{{getImagenPersonaje(personaje)}}" class="img-fluid">
+            </span>
+        </div>
+    </p-dialog>
 </main>
